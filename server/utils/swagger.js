@@ -1,31 +1,16 @@
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
-const { version } = require("../../package.json");
+const swaggerAutogen = require("swagger-autogen")();
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Carbon Cell Api Docs",
-      version,
-    },
-    components: {
-      securitySchemas: { bearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" } },
-    },
-    security: [{ bearerAuth: [] }],
+const config = {
+  info: {
+    version: "1.0.0",
+    title: "Carbon Cell APIS",
   },
-  apis: ['"../routes/index.js"'],
+  host: "localhost:3002",
+  basePath: "/api",
+  schemes: ["http"],
 };
 
-const swaggerSpec = swaggerJsDoc(options);
+const outputFile = "./swagger.json";
+const endpointsFiles = ["../routes/index.js"];
 
-const swaggerDocs = (app, port) => {
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-  app.get("docs.json", (req, res) => {
-    res.setHeader("Content-Type", "application/json");
-    res.send(swaggerSpec);
-  });
-
-  console.log(`Docs avaailble at http://localhost:${port}/docs`);
-};
+swaggerAutogen(outputFile, endpointsFiles, config);

@@ -2,20 +2,10 @@ const express = require("express");
 const router = express.Router();
 const authRoute = require("./auth.route");
 const userRoute = require("./user.route");
+const animalDataRoute = require("./animaldata.route");
 
-const routesIndex = [
-  {
-    path: "/auth",
-    route: authRoute,
-  },
-  {
-    path: "/user",
-    route: userRoute,
-  },
-];
-
-routesIndex.forEach((route) => {
-  router.use(route.path, route.route);
-});
+router.use("/auth", authRoute);
+router.use("/userdata", userRoute);
+router.use("/animaldata", animalDataRoute);
 
 module.exports = router;

@@ -3,7 +3,7 @@ const userController = require("../controllers/user.controller");
 const auth = require("../middlewares/auth");
 const router = express.Router();
 
-//api/auth/register
+//api/user/userdata
 router.get("/userdata", auth(), userController.getUserdata);
 
 module.exports = router;

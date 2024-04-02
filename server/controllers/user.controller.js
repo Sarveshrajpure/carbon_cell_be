@@ -1,7 +1,7 @@
 const { userService } = require("../services/");
 const httpStatus = require("http-status");
 
-const authController = {
+const userController = {
   async getUserdata(req, res, next) {
     try {
       let userData = req.authenticated;
@@ -18,4 +18,4 @@ const authController = {
     }
   },
 };
-module.exports = authController;
+module.exports = userController;
