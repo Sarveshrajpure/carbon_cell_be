@@ -1,0 +1,36 @@
+{
+  "name": "carbon_cell_be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server/server.js",
+    "start":"node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sarveshrajpure/carbon_cell_be.git"
+  },
+  "author": "sarvesh rajpure",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sarveshrajpure/carbon_cell_be/issues"
+  },
+  "homepage": "https://github.com/Sarveshrajpure/carbon_cell_be#readme",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-formidable": "^1.2.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-validator": "^7.0.1",
+    "http-status": "^1.7.4",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.4",
+    "nodemon": "^3.1.0"
+  }
+}
