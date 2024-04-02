@@ -5,7 +5,7 @@ const userRoute = require("./user.route");
 const animalDataRoute = require("./animaldata.route");
 
 router.use("/auth", authRoute);
-router.use("/userdata", userRoute);
+router.use("/user", userRoute);
 router.use("/animaldata", animalDataRoute);
 
 module.exports = router;

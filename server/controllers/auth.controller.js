@@ -7,6 +7,18 @@ require("dotenv").config();
 const authController = {
   async register(req, res, next) {
     try {
+      /*  #swagger.parameters['Register params'] = {
+            in: 'body',
+            description: 'Json data required to register a user',
+            schema: {
+                firstName: 'John',
+                lastName: "Doe",
+                email: 'jhondoe@gmail.com',
+                password:'jhondoe123'
+            },
+            required:true
+    } */
+
       //validating using joi
       let value = await registerSchema.validateAsync(req.body);
 
@@ -23,6 +35,22 @@ const authController = {
           value.lastName
         );
 
+        /* #swagger.responses[200] = {
+            description: 'Reponsds with registered user info',
+            schema:{
+              "user": {
+              "email": "jhondoe@gmail.com",
+              "password": "$2b$10$3DMTCEG/TGwkQt6AgW7tteUlw4HmBkZ5k5z5WJzt0lKbbVLZulNwi",
+              "firstName": "jhon",
+              "lastName": "deo",
+              "_id": "660be614ed71f2b5991db5aa",
+              "createdAt": "2024-04-02T11:03:48.798Z",
+              "updatedAt": "2024-04-02T11:03:48.798Z", 
+               }
+            }
+          }
+        } */
+
         res.status(httpStatus.CREATED).send({
           user,
         });
@@ -34,6 +62,18 @@ const authController = {
 
   async signin(req, res, next) {
     try {
+      /*  #swagger.parameters['sigin params'] = {
+            in: 'body',
+            description: 'Json data required to register a user',
+            schema: {
+                firstName: 'John',
+                lastName: "Doe",
+                email: 'jhondoe@gmail.com',
+                password:'jhondoe123'
+            },
+            required:true
+    } */
+
       //validating user login data using joi
       let value = await loginSchema.validateAsync(req.body);
 
@@ -42,6 +82,22 @@ const authController = {
 
         //setting access token
         let token = await authService.genAuthToken(user);
+
+        /* #swagger.responses[200] = {
+            description: 'Reponsds with  user info and token and sets a cookie with token',
+            schema:{
+              "user": {
+              "email": "jhondoe@gmail.com",
+              "password": "$2b$10$3DMTCEG/TGwkQt6AgW7tteUlw4HmBkZ5k5z5WJzt0lKbbVLZulNwi",
+              "firstName": "jhon",
+              "lastName": "deo",
+              "_id": "660be614ed71f2b5991db5aa",
+              "createdAt": "2024-04-02T11:03:48.798Z",
+              "updatedAt": "2024-04-02T11:03:48.798Z", 
+               },
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MGJlNjE0ZmU3MWYyYjU5OTFkYjVhYSIsImlhdCI6MTcxMjA2NTk1NCwiZXhwIjoxNzEyMTUyMzU0fQ.ZXY5GFTYtmT7LqgYNMM_G9nO-F6wFBea4k-lL0mVimc"
+            }
+        } */
 
         res
           .cookie("x-access-token", token, {
@@ -67,6 +123,20 @@ const authController = {
       let user = await userService.findUserById(_id);
 
       if (auth && user) {
+        /* #swagger.responses[200] = {
+            description: 'Reponsds with  user info',
+            schema:{
+              "user": {
+              "email": "jhondoe@gmail.com",
+              "password": "$2b$10$3DMTCEG/TGwkQt6AgW7tteUlw4HmBkZ5k5z5WJzt0lKbbVLZulNwi",
+              "firstName": "jhon",
+              "lastName": "deo",
+              "_id": "660be614ed71f2b5991db5aa",
+              "createdAt": "2024-04-02T11:03:48.798Z",
+              "updatedAt": "2024-04-02T11:03:48.798Z", 
+               }
+            }
+        } */
         res.status(httpStatus.OK).send(user);
       }
     } catch (err) {
